@@ -21,14 +21,14 @@ namespace SitemapCreator
         /// </summary>
         /// <param name="webSiteData"></param>
         /// <returns></returns>
-        internal XDocument GetSiteMapXML(Dictionary<string, float> webSiteData)
+        internal XDocument GetSiteMapXML(List<(string address, float score)> webSiteData)
         {
             foreach (var item in webSiteData)
             {
                 rootNode.Add(new XElement(nameSpace + "url",
-                    new XElement(nameSpace + "loc", item.Key),
+                    new XElement(nameSpace + "loc", item.address),
                     new XElement(nameSpace + "lastmod", DateTime.UtcNow),
-                    new XElement(nameSpace + "priority", item.Value)));
+                    new XElement(nameSpace + "priority", item.score)));
             }
             _xml.Add(rootNode);
             return _xml;

@@ -30,11 +30,11 @@ namespace SitemapCreator
         /// Get web site data
         /// </summary>
         /// <returns></returns>
-        private static Dictionary<string, float> GetWebSiteData()
+        private static List<(string address, float score)> GetWebSiteData()
         {
-            var result = new Dictionary<string, float>();
-            result.Add("https://homepage.com.tw", 1.0f);
-            result.Add("https://homepage.com.tw/news", 0.8f);
+            var result = new List<(string address, float score)>();
+            result.Add(("https://homepage.com.tw", 1.0f));
+            result.Add(("https://homepage.com.tw/news", 0.8f));
             return result;
         }
     }
