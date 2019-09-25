@@ -6,21 +6,26 @@ namespace SitemapCreator
 {
     internal class XMLCreator
     {
-        private XElement _xml;
-
+        private XDocument _xml;
+        private XElement rootNode;
+        private XNamespace nameSpace = "http://www.sitemaps.org/schemas/sitemap/0.9";
         public XMLCreator()
         {
-            _xml = new XElement("urlset");
+            _xml = new XDocument(new XDeclaration("1.0", "utf-8", null));
+
+            rootNode = new XElement(nameSpace + "urlset");
+
         }
-        internal XElement GetSiteMapXML(Dictionary<string, float> webSiteData)
+        internal XDocument GetSiteMapXML(Dictionary<string, float> webSiteData)
         {
             foreach (var item in webSiteData)
             {
-                _xml.Add(new XElement("url", 
-                    new XElement("loc", item.Key), 
-                    new XElement("lastmod", DateTime.UtcNow), 
-                    new XElement("priority", item.Value)));
+                rootNode.Add(new XElement(nameSpace + "url",
+                    new XElement(nameSpace + "loc", item.Key),
+                    new XElement(nameSpace + "lastmod", DateTime.UtcNow),
+                    new XElement(nameSpace + "priority", item.Value)));
             }
+            _xml.Add(rootNode);
             return _xml;
         }
     }

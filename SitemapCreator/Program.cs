@@ -21,9 +21,8 @@ namespace SitemapCreator
             XMLCreator ctr = new XMLCreator();
             var xmlData = ctr.GetSiteMapXML(webSiteData);
             //產生 xml
-            CreateXMLFile(xmlData);
-
-            Console.WriteLine($"Site map產生完畢");
+            string path = Path.Combine(Environment.CurrentDirectory, "sitemap.xml");
+            xmlData.Save(path);
         }
 
         /// <summary>
@@ -36,15 +35,6 @@ namespace SitemapCreator
             result.Add("https://homepage.com.tw", 1.0f);
             result.Add("https://homepage.com.tw/news", 0.8f);
             return result;
-        }
-
-        private static void CreateXMLFile(XElement data)
-        {
-            string path = Path.Combine(Environment.CurrentDirectory, "sitemap.xml");
-            using (StreamWriter sw = new StreamWriter(path, false))
-            {
-                sw.WriteLine(data.ToString());
-            }
         }
     }
 }
