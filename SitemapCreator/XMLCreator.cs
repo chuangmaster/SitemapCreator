@@ -16,6 +16,11 @@ namespace SitemapCreator
             rootNode = new XElement(nameSpace + "urlset");
 
         }
+        /// <summary>
+        /// Get site map xml document
+        /// </summary>
+        /// <param name="webSiteData"></param>
+        /// <returns></returns>
         internal XDocument GetSiteMapXML(Dictionary<string, float> webSiteData)
         {
             foreach (var item in webSiteData)

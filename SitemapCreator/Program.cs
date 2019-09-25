@@ -20,6 +20,7 @@ namespace SitemapCreator
             //產生 site map xml
             XMLCreator ctr = new XMLCreator();
             var xmlData = ctr.GetSiteMapXML(webSiteData);
+
             //產生 xml
             string path = Path.Combine(Environment.CurrentDirectory, "sitemap.xml");
             xmlData.Save(path);
